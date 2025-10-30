@@ -1,0 +1,18 @@
+streams:
+  # Raw stream (no filters)
+  rode_mic:
+    - rtsp://192.168.1.37:8554/rode_ai_micro
+  
+  # Filtered stream - boosted volume and voice optimized
+  rode_filtered:
+    - ffmpeg:rtsp://192.168.1.37:8554/rode_ai_micro#audio=opus#audio_filter=highpass=f=80,lowpass=f=3000,volume=1.3
+  
+  # High volume version
+  rode_loud:
+    - ffmpeg:rtsp://192.168.1.37:8554/rode_ai_micro#audio=opus#audio_filter=volume=2.0
+
+api:
+  listen: ":1984"
+
+webrtc:
+  listen: ":8555"
